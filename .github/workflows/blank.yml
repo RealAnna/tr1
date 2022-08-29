@@ -22,14 +22,11 @@ jobs:
     steps:
     - name: Print the input tag to STDOUT
       env:
-        logLevel: ${{ inputs.logLevel || 'DEBUG' }}
+        LOG: ${{ inputs.logLevel || 'DEBUG' }}
       run: | 
-        echo  ${{ inputs.logLevel }}
+        echo "checking input ${{ inputs.logLevel }}"
+        echo "checking step var $LOG"
         echo "logLevel=${{ inputs.logLevel || 'Yellow' }}" >> $GITHUB_ENV
-        echo ${{ env.logLevel }}
+        echo "checking env var ${{ env.logLevel }}"
 
-    - name: Use in condition
-      if:  ${{ inputs.logLevel || 'DEBUG' }} == 'DEBUG'
-      run: |
-        echo "yep!"
     
