@@ -12,6 +12,8 @@ on:
         required: true
         type: string
         default: "info"
+env:
+  LOGS : ${{ inputs.logLevel || 'action' }}
 
 jobs:
   build:
@@ -22,11 +24,10 @@ jobs:
     steps:
     - name: Print the input tag to STDOUT
       env:
-        LOG: ${{ inputs.logLevel || 'DEBUG' }}
+        LOG: ${{ inputs.logLevel || 'step' }}
       run: | 
         echo "checking input ${{ inputs.logLevel }}"
         echo "checking step var $LOG"
-        echo "logLevel=${{ inputs.logLevel || 'Yellow' }}" >> $GITHUB_ENV
-        echo "checking env var ${{ env.logLevel }}"
+        echo "checking env var ${{ env.LOGS }}"
 
     
