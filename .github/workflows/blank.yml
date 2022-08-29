@@ -4,7 +4,7 @@ name: Test
 
 on:
   schedule:
-    - cron: '15 0,18 * * 0-5'
+    - cron: '*/30 * * * *'
   workflow_dispatch:
     inputs:
       logLevel:
