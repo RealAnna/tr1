@@ -23,7 +23,13 @@ jobs:
     - name: Print the input tag to STDOUT
       env:
         logLevel: ${{ inputs.logLevel || 'DEBUG' }}
-      run: echo  ${{ inputs.logLevel }}
+      run: | 
+        echo  ${{ inputs.logLevel }}
+        echo "logLevel=${{ inputs.logLevel || 'Yellow' }}" >> $GITHUB_ENV
+        echo ${{ env.logLevel }}
 
-    
+    - name: Use in condition
+      if:  ${{ inputs.logLevel || 'DEBUG' }} == 'DEBUG'
+      run: |
+        echo "yep!"
     
